@@ -1,0 +1,191 @@
+body {
+  overflow: auto;
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+.margin-top-2 {
+  margin-top: 2%;
+}
+
+.margin-top-3 {
+  margin-top: 3%;
+}
+
+.margin-top-5 {
+  margin-top: 5%;
+}
+
+.margin-top-10 {
+  margin-top: 10%;
+}
+
+.margin-top-15 {
+  margin-top: 15%;
+}
+
+.margin-top-35 {
+  margin-top: 35%;
+}
+
+.div-width {
+  width: 300px;
+}
+
+.div-width-600 {
+  width: 600px;
+}
+
+.div-width-213 {
+  width: 213px;
+}
+
+.div-width-400 {
+  width: 400px;
+}
+
+.div-width-80 {
+  width: 80%;
+}
+
+.div-width-60 {
+  width: 60%;
+}
+
+.div-width-40 {
+  width: 40%;
+}
+
+.div-width-30 {
+  width: 30%;
+}
+
+.div-width-20 {
+  width: 20%;
+}
+
+.float-left {
+  float: left;
+  display: block;
+}
+
+.margin-left-2 {
+  margin-left: 2%;
+}
+
+.margin-left-4 {
+  margin-left: 4%;
+}
+
+.margin-left-10 {
+  margin-left: 10%;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.tr-width-2 {
+  width: 2%;
+}
+
+.ul-extras {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 25px;
+}
+
+.li-extras {
+  border: 1px solid black;
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+
+.fa-close {
+  cursor: pointer;
+}
+
+.button-position {
+  position: absolute;
+}
+
+.home-title {
+  display: none;
+  color: white;
+}
+
+.crediq-dropdown {
+  float: right;
+  margin-top: 1%;
+  margin-right: 5%;
+}
+
+.encabezado-movil {
+  display: none;
+  background-color: black;
+  margin-bottom: 4px;
+}
+
+@media (min-width: 768px) {
+  .encabezado-movil {
+    display: block;
+  }
+
+  .home-title {
+    display: block;
+  }
+}
+
+.home-title {
+  display: none;
+}
+
+/* make sidebar nav vertical */
+
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+
+  .sidebar-nav .navbar ul {
+    float: none;
+    display: block;
+  }
+
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .home-title {
+    display: block;
+    width: 250px;
+  }
+
+  .navbar-overflow {
+    height: 100%;
+  }
+
+  .menu-width {
+    width: 230px;
+  }
+}
+
+.margin-left-loading {
+  margin-left: 20px;
+}
+
+.column-width {
+  width: 650px;
+}

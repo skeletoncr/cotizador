@@ -1,0 +1,51 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <ol class="breadcrumb">
+          <li id="initbreadcrumb"><a href="#/roles">Roles</a></li>
+          <li id="accionbreadcrumb"><a href="">Usuarios</a></li>
+        </ol>
+      <hr>
+      <label>Buscar:</label>
+      <input type="text" ng-model="search.login_" placeholder="Username" />
+      <a href="#/roles-agregar-usuario/{{routeParams.idRol}}" class="btn btn-inverse dropdown-toggle">Agregar Nuevo</a>
+      <br />
+      <p><strong><a href="" ng-click="resetFilters()">Mostrar Todos</a></strong></p>
+      <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+      <table class="table table-striped">
+        <thead>
+          <tr>                         
+            <th>Opciones</th>
+            <th>Rol</th>
+            <th>Username</th>
+            <th>Fecha Modificado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="usuarioConRol in usuariosConRoles | filter:search | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <td>
+              <p>
+                <small>
+                  <a href="" ng-click="borrarUsuarioConRol(usuarioConRol.id_usuario)">Eliminar</a>
+                </small>
+              </p>
+            </td>
+            <td><p><small>{{usuarioConRol.descripcion}}</small></p></td>
+            <td><p><small>{{usuarioConRol.login_}}</small></p></td>
+            <td><p><small>{{usuarioConRol.modifydate}}</small></p></td>
+          </tr>
+        </tbody>
+      </table>
+      Paginas de la tabla:
+      <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+      </button>
+        {{currentPage+1}}/{{noOfPages}}
+      <button ng-disabled="currentPage >= usuariosConRoles.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

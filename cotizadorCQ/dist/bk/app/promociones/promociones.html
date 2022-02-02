@@ -1,0 +1,68 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="form-inline">
+          <label style="margin:-5px 30px" class="span4">Promociones</label>		
+        </div>
+      </div>
+      <hr>
+      <label>Buscar:</label> <input type="text" ng-model="search.descripcion" placeholder="Descripcion" />
+      <a href="#/agregar-promocion" class="btn btn-inverse dropdown-toggle">Agregar Nueva</a>
+      <br />
+			<label>Filtrar por tipo de prestamo:</label>
+			<select ng-model="selected" ng-change="changeSearch()">
+        <option value=0>Prendario</option>
+				<option value=1>Leasing</option>
+				<option value=2>Todos</option>
+			</select>
+      <p><strong><a href="" ng-click="resetFilters()">Mostrar Todos</a></strong></p>
+      <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+      <table class="table table-striped">
+        <thead>
+          <tr>                         
+            <th>Opciones</th>
+            <th>Tipo Prestamo</th>
+            <th>Descripcion</th>
+            <th>Fecha Activacion</th>
+            <th>Fecha Vencimiento</th>
+            <th>Contruccion Promociones</th>
+            <th>Marcas</th>
+            <th>Area Credito</th>
+            <th>Años</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="promocion in promociones | filter:search | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <td>
+              <p>
+                <small>
+                  <a href="#/editar-promocion/{{promocion.id}}">Editar</a>
+                  <a href="" ng-click="borrarPromocion(promocion.id)">Eliminar</a>
+                </small>
+              </p>
+            </td>
+            <td><p><small>{{(promocion.id_tipo_prestamo == 0) ? 'Prendario' : 'Leasing'}}</small></p></td>
+            <td><p><small>{{promocion.descripcion}}</small></p></td>
+            <td><p><small>{{promocion.fecha_activacion}}</small></p></td>
+            <td><p><small>{{promocion.fecha_vencimiento}}</small></p></td>
+            <td><p><small><a href="#/agregar-detalles-en-promocion/{{promocion.id}}">Agregar</a></small></p></td>
+            <td><p><small><a href="#/agregar-marcas-en-promocion/{{promocion.id}}">Agregar</a></small></p></td>
+            <td><p><small><a href="#/agregar-areas-credito-en-promocion/{{promocion.id}}">Agregar</a></small></p></td>
+            <td><p><small><a href="#/agregar-annios-en-promocion/{{promocion.id}}">Agregar</a></small></p></td>
+          </tr>
+        </tbody>
+      </table>
+      Paginas de la tabla:
+      <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+      </button>
+        {{currentPage+1}}/{{noOfPages}}
+      <button ng-disabled="currentPage >= promociones.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <ol class="breadcrumb">
+          <li id="initbreadcrumb"><a href="#/usuarios">Usuarios</a></li>
+          <li id="accionbreadcrumb"><a href="">Editar</a></li>
+        </ol>
+	    </div>
+      <div id="form_div" class="margin-auto">
+	      <div ng-show="error" class="alert alert-danger ng-binding ng-scope ng-hide">{{error}}</div>
+        <form name="form" ng-submit="editarUsuario()" role="form" class="form-horizontal ng-scope ng-pristine ng-invalid ng-invalid-required">
+          <!--Datos del usuario-->
+          <div class="row margin-left-2">
+            <div class="form-group">
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="id">ID</label>
+                <input type="text" placeholder="ID" disabled name="id" id="id" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="id" required="">
+                <span ng-show="form.id.$dirty &amp;&amp; form.id.$error.required" class="help-block ng-hide">ID es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="username" required="">
+                <span ng-show="form.username.$dirty &amp;&amp; form.username.$error.required" class="help-block ng-hide">Username es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="contrasena">Contraseña</label>
+                <input type="text" name="contrasena" id="contrasena" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="contrasena" required="">
+                <span ng-show="form.contrasena.$dirty &amp;&amp; form.contrasena.$error.required" class="help-block ng-hide">Contraseña es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="nombre" required="">
+                <span ng-show="form.nombre.$dirty &amp;&amp; form.nombre.$error.required" class="help-block ng-hide">Nombre es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="apellido1">Apellido1</label>
+                <input type="text" name="apellido1" id="apellido1" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="apellido1" required="">
+                <span ng-show="form.apellido1.$dirty &amp;&amp; form.apellido1.$error.required" class="help-block ng-hide">Apellido1 es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="apellido2">Apellido2</label>
+                <input type="text" name="apellido2" id="apellido2" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="apellido2" required="">
+                <span ng-show="form.apellido2.$dirty &amp;&amp; form.apellido2.$error.required" class="help-block ng-hide">Apellido2 es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="email">Correo electronico</label>
+                <input type="text" name="email" id="email" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="email" required="">
+                <span ng-show="form.email.$dirty &amp;&amp; form.email.$error.required" class="help-block ng-hide">Correo Electronico es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="telefono">Telefono</label>
+                <input type="text" name="telefono" id="telefono" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="telefono" required="">
+                <span ng-show="form.telefono.$dirty &amp;&amp; form.telefono.$error.required" class="help-block ng-hide">Telefono es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="id_genero">Genero</label><br>
+                <select class="form-control" ng-model="id_genero">
+                  <option value=0>Masculino</option>
+                  <option value=1>Femenino</option>
+                </select>
+                <span ng-show="form.id_genero.$dirty &amp;&amp; form.id_genero.$error.required" class="help-block ng-hide">Genero es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="idtipo_usuario">Tipo de Usuario</label><br>
+                <select class="form-control" ng-model="idtipo_usuario">
+                  <option value=1>Admin</option>
+                  <option value=2>User</option>
+                </select>
+                <span ng-show="form.idtipo_usuario.$dirty &amp;&amp; form.idtipo_usuario.$error.required" class="help-block ng-hide">Tipo de usuario es requerido</span>
+              </div>
+            </div>
+          </div>
+
+          <!--Agencias-->
+          <div class="row margin-left-2">
+            <div class="div-width-213 float-left">
+              <img ng-if="agenciasLoading" ng-src="{{imgLoading}}"/>
+              <label for="selectedAgencia">Seleccione la agencia</label><br>
+              <select class="form-control" ng-model="nuevaAgencia" ng-options="item.nombre for item in agencias track by item.id"></select>
+              <a class="margin-top-2 btn btn-primary pull-right" ng-click="agregarAgencia()">Agregar agencia</a>
+            </div>
+          </div>
+          <div class="row margin-left-2">
+            <ul class="ul-extras">
+              <li ng-repeat="agencia in agenciasUsuario" class="li-extras">
+                <a class="fa fa-close" ng-click="borrarAgencia($index)">x</a>
+                <span>{{agencia.nombre}}</span>
+              </li>
+            </ul>
+          </div>
+          <!--Fin Agencias-->
+
+          <div class="row margin-left-2">
+            <div class="form-actions">
+              <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger" disabled="disabled">Guardar cambios</button>
+              <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+            </div>
+          </div>
+        </form>
+	    </div>
+    </div>
+  </div>
+</div>

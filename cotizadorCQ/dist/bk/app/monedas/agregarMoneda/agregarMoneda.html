@@ -1,0 +1,28 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <ol class="breadcrumb">
+          <li id="initbreadcrumb"><a href="#/monedas">Monedas</a></li>
+          <li id="accionbreadcrumb"><a href="">Agregar</a></li>
+        </ol>
+	    </div>
+      <div id="form_div" class="row margin-auto div-width">
+	      <div ng-show="error" class="alert alert-danger ng-binding ng-scope ng-hide">{{error}}</div>
+        <form name="form" ng-submit="agregarMoneda()" role="form" class="ng-scope ng-pristine ng-invalid ng-invalid-required">
+          <div class="form-group">
+            <label for="descripcion">Tipo de Moneda</label>
+            <input type="text" name="descripcion" id="descripcion" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="descripcion" required="">
+            <span ng-show="form.descripcion.$dirty &amp;&amp; form.descripcion.$error.required" class="help-block ng-hide">Tipo de moneda es requerido</span>
+          </div>
+          <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger" disabled="disabled">Agregar Moneda</button>
+            <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+          </div>
+        </form>
+	    </div>
+    </div>
+  </div>
+</div>

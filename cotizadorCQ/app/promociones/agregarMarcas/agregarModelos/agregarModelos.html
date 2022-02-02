@@ -1,0 +1,52 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <ol class="breadcrumb">
+          <li id="initbreadcrumb"><a href="#/agregar-marcas-en-promocion/{{routeParams.idPromocion}}">Promocion</a></li>
+          <li id="accionbreadcrumb"><a href="">Modelos de la Promocion</a></li>
+        </ol>
+      </div>
+      <hr>
+      <label>Buscar:</label> <input type="text" ng-model="search.modelo" placeholder="Modelo" />
+      <a href="#/agregar-marca/{{routeParams.idMarca}}/modelo-promocion/{{routeParams.idPromocion}}" class="btn btn-inverse dropdown-toggle">Agregar Nuevo</a>
+      <br />
+      <p><strong><a href="" ng-click="resetFilters()">Mostrar Todos</a></strong></p>
+      <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+      <table class="table table-striped">
+        <thead>
+          <tr>                         
+            <th>Opciones</th>
+            <th>Promocion</th>
+            <th>Modelos</th>
+            <th>Fecha Modificado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="modelo in modelos | filter:search | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <td>
+              <p>
+                <small>
+                  <a href="" ng-click="borrarModelo(modelo.id)">Eliminar</a>
+                </small>
+              </p>
+            </td>
+            <td><p><small>{{modelo.descpromocion}}</small></p></td>
+            <td><p><small>{{modelo.modelo}}</small></p></td>
+            <td><p><small>{{modelo.modifydate}}</small></p></td>
+          </tr>
+        </tbody>
+      </table>
+      Paginas de la tabla:
+      <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+      </button>
+        {{currentPage+1}}/{{noOfPages}}
+      <button ng-disabled="currentPage >= modelos.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="form-inline">
+          <label style="margin:-5px 30px" class="span4">Variables</label>		
+        </div>
+      </div>
+      <hr>
+      <br />
+      <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+      <table class="table table-striped">
+        <thead>
+          <tr>                         
+            <th>Opciones</th>
+            <th>Cambio dolar</th>
+            <th>Cambio dolar Seguros</th>
+            <th>Tasa1</th>
+            <th>Tasa2</th>
+            <th>Plazo1</th>
+            <th>Plazo2</th>
+            <th>Factor Seguro</th>
+            <th>Comision</th>
+            <th>RCI</th>
+            <th>Fecha Modificado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="variable in variables | filter:search | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <td>
+              <p>
+                <small>
+                  <a href="#/editar-variable/{{variable.id}}">Editar</a>
+                </small>
+              </p>
+            </td>
+            <td><p><small>{{variable.cambio_dolar}}</small></p></td>
+            <td><p><small>{{variable.cambio_dolar_seguros}}</small></p></td>
+            <td><p><small>{{variable.tasa1}}</small></p></td>
+            <td><p><small>{{variable.tasa2}}</small></p></td>
+            <td><p><small>{{variable.plazo1}}</small></p></td>
+            <td><p><small>{{variable.plazo2}}</small></p></td>
+            <td><p><small>{{variable.factorSeguro}}</small></p></td>
+            <td><p><small>{{variable.comision}}</small></p></td>
+            <td><p><small>{{variable.rci}}</small></p></td>
+            <td><p><small>{{variable.modifydate}}</small></p></td>
+          </tr>
+        </tbody>
+      </table>
+      Paginas de la tabla:
+      <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+      </button>
+        {{currentPage+1}}/{{noOfPages}}
+      <button ng-disabled="currentPage >= variables.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

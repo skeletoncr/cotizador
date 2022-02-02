@@ -1,0 +1,52 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="form-inline">
+          <label style="margin:-5px 30px" class="span4">Producto Banco</label>		
+        </div>
+      </div>
+      <hr>
+      <label>Buscar:</label> <input type="text" ng-model="search.descripcion" placeholder="Descripcion" />
+      <a href="#/agregar-productobanco" class="btn btn-inverse dropdown-toggle">Agregar Nueva</a>
+      <br />
+      <p><strong><a href="" ng-click="resetFilters()">Mostrar Todos</a></strong></p>
+      <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+      <table class="table table-striped">
+        <thead>
+          <tr>                         
+            <th>Opciones</th>
+            <th>Codigo</th>
+            <th>Descripcion</th>
+            <th>Fecha Modificado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="unProductoBanco in productoBanco | filter:search | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <td>
+              <p>
+                <small>
+                  <a href="#/editar-productobanco/{{unProductoBanco.id}}">Editar</a>
+                  <a href="" ng-click="borrarProductoBanco(unProductoBanco.id)">Eliminar</a>
+                </small>
+              </p>
+            </td>
+            <td><p><small>{{unProductoBanco.codigo}}</small></p></td>
+            <td><p><small>{{unProductoBanco.descripcion}}</small></p></td>
+            <td><p><small>{{unProductoBanco.modifydate}}</small></p></td>
+          </tr>
+        </tbody>
+      </table>
+      Paginas de la tabla:
+      <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+      </button>
+        {{currentPage+1}}/{{noOfPages}}
+      <button ng-disabled="currentPage >= productoBanco.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

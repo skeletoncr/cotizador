@@ -1,0 +1,79 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="form-inline">
+          <label style="margin:-5px 30px" class="span4">Bandeja de Vendedor</label>		
+        </div>
+      </div>
+      <hr>
+      <label>Buscar:</label> 
+      <input type="text" ng-model="search.id_cedula" placeholder="Cedula" />
+      <input type="text" ng-model="search.nombre" placeholder="Nombre" />
+      <input type="text" ng-model="search.apellido1" placeholder="Apellido1" />
+      <strong><a href="" ng-click="cargarTodos()">Cargar Todos</a></strong>
+      <br />
+			<label>Filtrar por estado:</label>
+			<select ng-model="selected" ng-change="changeSearch()">
+        <option value=5>Todos</option>
+				<option value=0>Cotizando</option>
+				<option value=1>Pre aprobado</option>
+				<option value=2>Documentos</option>
+        <option value=3>Credit One</option>
+			</select>
+      <label>Filtrar por tipo:</label>
+			<select ng-model="selectedTipo" ng-change="changeTipoSearch()">
+        <option value=2>Todos</option>
+        <option value=0>Prendario</option>
+				<option value=1>Leasing</option>
+			</select>
+      <p><strong><a href="" ng-click="resetFilters()">Mostrar Todos</a></strong></p>
+      <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+      <table class="table table-condensed table-hover table-bordered">
+        <thead>
+          <tr>                         
+            <th> # Caso</th>
+            <th>Tipo</th>
+            <th>Cedula</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Telefono</th>
+            <th>Status</th>
+            <th>Año</th>
+            <th>Costo</th>
+            <th>Prima</th>
+            <th>Moneda</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="entrada in bandejaVendedor | filter:search | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <td><p><small><a href="#/detalle-cotizacion-vendedor/{{entrada.id}}">{{entrada.id}}</a></small></p></td>
+            <td><p><small>{{(entrada.id_tipo_prestamo == 0) ? 'Prendario' : 'Leasing'}}</small></p></td>
+            <td><p><small>{{entrada.id_cedula}}</small></p></td>
+            <td><p><small>{{entrada.nombre+' '+entrada.apellido1+' '+entrada.apellido2}}</small></p></td>
+            <td><p><small>{{entrada.email}}</small></p></td>
+            <td><p><small>{{entrada.telefono}}</small></p></td>
+            <td ng-if="entrada.id_estado == 0"><p><small>Cotizando</small></p></td>
+            <td ng-if="entrada.id_estado == 1"><p><small>Pre aprobado</small></p></td>
+            <td ng-if="entrada.id_estado == 2"><p><small>Documentos</small></p></td>
+            <td ng-if="entrada.id_estado == 3"><p><small>Credit One</small></p></td>
+            <td><p><small>{{entrada.anno}}</small></p></td>
+            <td><p><small>{{entrada.costovehiculo}}</small></p></td>
+            <td><p><small>{{entrada.prima}}</small></p></td>
+            <td><p><small>{{(entrada.id_moneda == 1) ? 'Dolares' : 'Colones'}}</small></p></td>
+          </tr>
+        </tbody>
+      </table>
+      Paginas de la tabla:
+      <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+      </button>
+        {{currentPage+1}}/{{noOfPages}}
+      <button ng-disabled="currentPage >= bandejaVendedor.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

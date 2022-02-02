@@ -1,0 +1,56 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="form-inline">
+          <label style="margin:-5px 30px" class="span4">Extras</label>		
+        </div>
+      </div>
+      <hr>
+      <label>Buscar:</label> <input type="text" ng-model="search.descripcion" placeholder="Descripcion" />
+      <a href="#/agregar-extra" class="btn btn-inverse dropdown-toggle">Agregar Nueva</a>
+      <br />
+      <p><strong><a href="" ng-click="resetFilters()">Mostrar Todos</a></strong></p>
+      <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+      <table class="table table-striped">
+        <thead>
+          <tr>                         
+            <th>Opciones</th>
+            <th>Descripcion</th>
+            <th>Moneda</th>
+            <th>Monto</th>
+            <th>Cuota</th>
+            <th>Fecha Modificado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="extra in extras | filter:search | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <td>
+              <p>
+                <small>
+                  <a href="#/editar-extra/{{extra.id}}">Editar</a>
+                  <a href="" ng-click="borrarExtra(extra.id)">Eliminar</a>
+                </small>
+              </p>
+            </td>
+            <td><p><small>{{extra.descripcion}}</small></p></td>
+            <td><p><small>{{(extra.moneda == 1) ? 'Dolares' : 'Colones'}}</small></p></td>
+            <td><p><small>{{extra.monto}}</small></p></td>
+            <td><p><small>{{extra.cuota}}</small></p></td>
+            <td><p><small>{{extra.modifydate}}</small></p></td>
+          </tr>
+        </tbody>
+      </table>
+      Paginas de la tabla:
+      <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+      </button>
+        {{currentPage+1}}/{{noOfPages}}
+      <button ng-disabled="currentPage >= extras.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

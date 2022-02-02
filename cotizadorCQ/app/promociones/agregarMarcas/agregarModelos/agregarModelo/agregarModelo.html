@@ -1,0 +1,51 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <ol class="breadcrumb">
+          <li id="initbreadcrumb"><a href="#/agregar-modelos-en-marca/{{routeParams.idMarca}}/promocion/{{routeParams.idPromocion}}">Modelos de la Promocion</a></li>
+          <li id="accionbreadcrumb"><a href="">Agregar</a></li>
+        </ol>
+        <hr>
+        <label>Buscar:</label>
+        <input type="text" ng-model="search.modelo" placeholder="Modelo" />
+        <br />
+        <p><strong><a href="" ng-click="resetFilters()">Mostrar Todos</a></strong></p>
+        <p><strong><a href="" ng-click="agregarTodosModelos()">Agregar todos los Modelos</a></strong></p>
+        <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Opciones</th>
+              <th>Marca</th>
+              <th>Modelo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="modelo in modelos | filter:search | startFrom:currentPage*pageSize | limitTo:pageSize">
+              <td>
+                <p>
+                  <small>
+                    <a href="" ng-click="agregarModeloPromocion(modelo.modelo)">Agregar Modelo a la promocion</a>
+                  </small>
+                </p>
+              </td>
+              <td><p><small>{{modelo.descripcion}}</small></p></td>
+              <td><p><small>{{modelo.modelo}}</small></p></td>
+            </tr>
+          </tbody>
+        </table>
+        Paginas de la tabla:
+        <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+          Previous
+        </button>
+          {{currentPage+1}}/{{noOfPages}}
+        <button ng-disabled="currentPage >= modelos.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+          Next
+        </button>
+	    </div>
+    </div>
+  </div>
+</div>

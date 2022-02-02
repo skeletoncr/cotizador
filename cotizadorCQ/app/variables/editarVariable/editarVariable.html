@@ -1,0 +1,94 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <ol class="breadcrumb">
+          <li id="initbreadcrumb"><a href="#/variables">Variables</a></li>
+          <li id="accionbreadcrumb"><a href="">Editar</a></li>
+        </ol>
+	    </div>
+      <div id="form_div" class="row margin-auto div-width-600">
+	      <div ng-show="error" class="alert alert-danger ng-binding ng-scope ng-hide">{{error}}</div>
+        <form name="form" ng-submit="editarVariable()" role="form" class="ng-scope ng-pristine ng-invalid ng-invalid-required">
+          <div class="form-group">
+            <div class="div-width-40 float-left margin-left-2 margin-top-2">
+              <label for="cambio_dolar">Cambio dolar</label>
+              <input type="text" name="cambio_dolar" id="cambio_dolar" placeholder="Cambio dolar" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="cambio_dolar" required="">
+              <span ng-show="form.cambio_dolar.$dirty &amp;&amp; form.cambio_dolar.$error.required" class="help-block ng-hide">Cambio dolar es requerido</span>
+            </div>
+
+            <div class="div-width-40 float-left margin-left-2 margin-top-2">
+              <label for="cambio_dolar_seguros">Cambio dolar Seguros</label>
+              <input type="text" name="cambio_dolar_seguros" id="cambio_dolar_seguros" placeholder="Cambio dolar" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="cambio_dolar_seguros" required="">
+              <span ng-show="form.cambio_dolar_seguros.$dirty &amp;&amp; form.cambio_dolar_seguros.$error.required" class="help-block ng-hide">Cambio dolar seguros es requerido</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="div-width-40 float-left margin-left-2 margin-top-2">
+              <label for="tasa1">Tasa 1</label>
+              <input type="text" name="tasa1" id="tasa1" placeholder="Tasa 1" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="tasa1" required="">
+              <span ng-show="form.tasa1.$dirty &amp;&amp; form.tasa1.$error.required" class="help-block ng-hide">Tasa 1 es requerido</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="div-width-40 float-left margin-left-2 margin-top-2">
+              <label for="tasa2">Tasa 2</label>
+              <input type="text" name="tasa2" id="tasa2" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="tasa2" required="">
+              <span ng-show="form.tasa2.$dirty &amp;&amp; form.tasa2.$error.required" class="help-block ng-hide">Tasa 2 es requerido</span>
+            </div>
+
+            <div class="div-width-40 float-left margin-left-2 margin-top-2">
+              <label for="prima">Prima</label>
+              <input type="text" name="prima" id="prima" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="prima" required="">
+              <span ng-show="form.prima.$dirty &amp;&amp; form.prima.$error.required" class="help-block ng-hide">Prima es requerido</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="div-width-40 float-left margin-left-2 margin-top-2">
+              <label for="comision">Comision</label>
+              <input type="text" name="comision" id="comision" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="comision" required="">
+              <span ng-show="form.comision.$dirty &amp;&amp; form.comision.$error.required" class="help-block ng-hide">Comision es requerido</span>
+            </div>
+
+            <div class="div-width-40 float-left margin-left-2 margin-top-2">
+              <label for="plazo1">Plazo 1</label>
+              <input type="text" name="plazo1" id="plazo1" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="plazo1" required="">
+              <span ng-show="form.plazo1.$dirty &amp;&amp; form.plazo1.$error.required" class="help-block ng-hide">Plazo 1 es requerido</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="div-width-40 float-left margin-left-2 margin-top-2">
+              <label for="plazo2">Plazo 2</label>
+              <input type="text" name="plazo2" id="plazo2" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="plazo2" required="">
+              <span ng-show="form.plazo2.$dirty &amp;&amp; form.plazo2.$error.required" class="help-block ng-hide">Plazo 2 es requerido</span>
+            </div>
+
+            <div class="div-width-40 float-left margin-left-2 margin-top-2">
+              <label for="factorSeguro">Factor Seguro</label>
+              <input type="text" name="factorSeguro" id="factorSeguro" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="factorSeguro" required="">
+              <span ng-show="form.factorSeguro.$dirty &amp;&amp; form.factorSeguro.$error.required" class="help-block ng-hide">Factor seguro es requerido</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="div-width-40 float-left margin-left-2 margin-top-2">
+              <label for="rci">RCI</label>
+              <input type="text" name="rci" id="rci" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="rci" required="">
+              <span ng-show="form.rci.$dirty &amp;&amp; form.rci.$error.required" class="help-block ng-hide">RCI es requerido</span>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || dataLoading" class=" margin-top-2 btn btn-danger" disabled="disabled">Guardar cambios</button>
+            <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+          </div>
+        </form>
+	    </div>
+    </div>
+  </div>
+</div>

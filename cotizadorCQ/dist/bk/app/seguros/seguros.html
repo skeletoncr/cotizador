@@ -1,0 +1,58 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="form-inline">
+          <label style="margin:-5px 30px" class="span4">Seguros</label>
+        </div>
+      </div>
+      <hr>
+      <label>Buscar:</label> <input type="text" ng-model="search.annio" placeholder="Año" />
+      <a href="#/agregar-seguro" class="btn btn-inverse dropdown-toggle">Agregar Nueva</a>
+      <br />
+      <p><strong><a href="" ng-click="resetFilters()">Mostrar Todos</a></strong></p>
+      <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+      <table class="table table-striped">
+        <thead>
+          <tr>                         
+            <th>Opciones</th>
+            <th>Tipo Seguro</th>
+            <th>Tipo Vehiculo</th>
+            <th>Uso del seguro</th>
+            <th>Rango inferior</th>
+            <th>Rango Superior</th>
+            <th>Fecha Modificado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="seguro in seguros | filter:search | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <td>
+              <p>
+                <small>
+                  <a href="#/editar-seguro/{{seguro.id}}">Editar</a>
+                  <a href="" ng-click="borrarSeguro(seguro.id)">Eliminar</a>
+                </small>
+              </p>
+            </td>
+            <td><p><small>{{(seguro.tipo_seguro == 1) ? 'Nuevo' : 'Usado'}}</small></p></td>
+            <td><p><small>{{seguro.tipoVehiculo}}</small></p></td>
+            <td><p><small>{{seguro.usoSeguro}}</small></p></td>
+            <td><p><small>{{seguro.rango_inferior}}</small></p></td>
+            <td><p><small>{{seguro.rango_superior}}</small></p></td>
+            <td><p><small>{{seguro.modifydate}}</small></p></td>
+          </tr>
+        </tbody>
+      </table>
+      Paginas de la tabla:
+      <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+      </button>
+        {{currentPage+1}}/{{noOfPages}}
+      <button ng-disabled="currentPage >= seguros.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

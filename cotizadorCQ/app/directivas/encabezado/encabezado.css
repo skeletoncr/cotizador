@@ -1,0 +1,25 @@
+.home-title {
+  display: none;
+  color: white;
+}
+.crediq-dropdown {
+  float: right;
+  margin-top: 1%;
+  margin-right: 5%;
+}
+
+.encabezado-movil{
+  display: none;
+  background-color: black;
+  margin-bottom: 4px;
+}
+
+@media (min-width: 768px) {
+  .encabezado-movil{
+    display: block;
+  }
+
+  .home-title {
+    display: block;
+  }
+}

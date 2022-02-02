@@ -1,0 +1,59 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="form-inline">
+          <label style="margin:-5px 30px" class="span4">Usuarios</label>		
+        </div>
+      </div>
+      <hr>
+      <label>Buscar:</label>
+      <input type="text" ng-model="search.nombre" placeholder="Nombre" />
+      <input type="text" ng-model="search.apellido1" placeholder="Apellido1" />
+      <input type="text" ng-model="search.apellido2" placeholder="Apellido2" />
+      <a href="#/agregar-usuario" class="btn btn-inverse dropdown-toggle">Agregar Nuevo</a>
+      <br />
+      <p><strong><a href="" ng-click="resetFilters()">Mostrar Todos</a></strong></p>
+      <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+      <table class="table table-striped">
+        <thead>
+          <tr>                         
+            <th>Opciones</th>
+            <th>Nombre</th>
+            <th>Apellido1</th>
+            <th>Apellido2</th>
+            <th>Correo</th>
+            <th>Fecha Modificado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="usuario in usuarios | filter:search | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <td>
+              <p>
+                <small>
+                  <a href="#/editar-usuario/{{usuario.id}}">Editar</a>
+                  <a href="" ng-click="borrarUsuario(usuario.id)">Eliminar</a>
+                </small>
+              </p>
+            </td>
+            <td><p><small>{{usuario.nombre}}</small></p></td>
+            <td><p><small>{{usuario.apellido1}}</small></p></td>
+            <td><p><small>{{usuario.apellido2}}</small></p></td>
+            <td><p><small>{{usuario.email}}</small></p></td>
+            <td><p><small>{{usuario.modifydate}}</small></p></td>
+          </tr>
+        </tbody>
+      </table>
+      Paginas de la tabla:
+      <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+      </button>
+        {{currentPage+1}}/{{noOfPages}}
+      <button ng-disabled="currentPage >= usuarios.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

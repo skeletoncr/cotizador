@@ -1,0 +1,55 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <ol class="breadcrumb">
+          <li id="initbreadcrumb"><a href="#/promociones">Promociones</a></li>
+          <li id="accionbreadcrumb"><a href="">Editar</a></li>
+        </ol>
+	    </div>
+      <div id="form_div" class="row margin-auto div-width">
+	      <div ng-show="error" class="alert alert-danger ng-binding ng-scope ng-hide">{{error}}</div>
+        <form name="form" ng-submit="editarPromocion()" role="form" class="ng-scope ng-pristine ng-invalid ng-invalid-required">
+          <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" placeholder="ID" disabled name="id" id="id" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="id" required="">
+            <span ng-show="form.id.$dirty &amp;&amp; form.id.$error.required" class="help-block ng-hide">ID es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="descripcion">Descripcion</label>
+            <input type="text" name="descripcion" id="descripcion" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="descripcion" required="">
+            <span ng-show="form.descripcion.$dirty &amp;&amp; form.descripcion.$error.required" class="help-block ng-hide">Descripcion es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="fecha_activacion">Fecha de Activacion</label>
+            <input type="text" mask="9999-19-39" placeholder="YYYY-MM-DD" name="fecha_activacion" id="fecha_activacion" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="fecha_activacion" required="">
+            <span ng-show="form.fecha_activacion.$dirty &amp;&amp; form.fecha_activacion.$error.required" class="help-block ng-hide">Fecha de activacion es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="fecha_vencimiento">Fecha de Vencimiento</label>
+            <input type="text" mask="9999-19-39" placeholder="YYYY-MM-DD" name="fecha_vencimiento" id="fecha_vencimiento" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="fecha_vencimiento" required="">
+            <span ng-show="form.fecha_vencimiento.$dirty &amp;&amp; form.fecha_vencimiento.$error.required" class="help-block ng-hide">Fecha de vencimiento es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="activo">Activo</label><br>
+            <select ng-model="activo">
+              <option value=1>Si</option>
+              <option value=0>No</option>
+            </select>
+            <span ng-show="form.activo.$dirty &amp;&amp; form.activo.$error.required" class="help-block ng-hide">Activo es requerido</span>
+          </div>
+          <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger" disabled="disabled">Guardar cambios</button>
+            <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+          </div>
+        </form>
+	    </div>
+    </div>
+  </div>
+</div>

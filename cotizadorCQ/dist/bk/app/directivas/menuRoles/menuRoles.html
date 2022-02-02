@@ -1,0 +1,33 @@
+<div class="col-sm-3 menu-width">
+  <div class="sidebar-nav navbar-overflow">
+    <div class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle navbar-toggle-left" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <span class="visible-xs navbar-brand">Cotizador CQ</span>
+      </div>
+      <div class="navbar-collapse collapse sidebar-navbar-collapse navbar-overflow-collapse">
+        <img class="margin-left-loading" ng-if="loading" ng-src="{{imgLoading}}"/>
+        <uib-accordion>
+          <div uib-accordion-group class="panel-default" heading="Procesos" is-open="status.isProcesosOpen">
+            <ul class="nav navbar-nav">
+              <li><a href="https://crediqweb.com/solicitudCliente/#/" target="_blank">Cliente</a></li>
+            </ul>
+            <ul class="nav navbar-nav" ng-repeat="rol in rolesProcesos">
+              <li ng-if="rol.activo === '1' && rol.nombre" ng-class="{active: $route.current.activetab === rol.id}"><a ng-href="#/{{rol.id}}">{{rol.nombre}}</a></li>
+            </ul>
+          </div>
+          <div uib-accordion-group class="panel-default" heading="Mantenimientos" is-open="status.isMantenimientosOpen">
+            <ul class="nav navbar-nav" ng-repeat="rol in rolesMantenimientos">
+              <li ng-if="rol.activo === '1' && rol.nombre" ng-class="{active: $route.current.activetab === rol.id}"><a ng-href="#/{{rol.id}}">{{rol.nombre}}</a></li>
+            </ul>
+          </div>
+        </uib-accordion>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>

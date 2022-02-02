@@ -1,0 +1,37 @@
+.home-title {
+  display: none;
+}
+
+/* make sidebar nav vertical */ 
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .home-title {
+    display: block;
+    width: 250px;
+  }
+  .navbar-overflow{
+    height: 100%
+  }
+  .menu-width{
+    width: 230px;
+  }
+}
+
+.margin-left-loading{
+  margin-left: 20px;
+}

@@ -1,0 +1,15 @@
+<div class="row encabezado-movil">
+  <h2 class="col-sm-3 home-title">Cotizador CQ</h2>
+  <div class="dropdown crediq-dropdown">
+    
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+      {{user.nombre + ' ' + user.apellido1}}
+      <img ng-if="nombreApellidoLoading" ng-src="{{imgLoading}}"/>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="#/password">Cambiar contraseña</a></li>
+      <li><a href="" ng-click="salir()">Salir</a></li>
+    </ul>
+  </div>
+</div>

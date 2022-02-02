@@ -1,0 +1,68 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <ol class="breadcrumb">
+          <li id="initbreadcrumb"><a href="#/roles">Roles</a></li>
+          <li id="accionbreadcrumb"><a href="">Editar</a></li>
+        </ol>
+	    </div>
+      <div id="form_div" class="row margin-auto div-width">
+	      <div ng-show="error" class="alert alert-danger ng-binding ng-scope ng-hide">{{error}}</div>
+        <form name="form" ng-submit="editarRol()" role="form" class="ng-scope ng-pristine ng-invalid ng-invalid-required">
+          <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" placeholder="ID" disabled name="id" id="id" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="id" required="">
+            <span ng-show="form.id.$dirty &amp;&amp; form.id.$error.required" class="help-block ng-hide">ID es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="descripcion">Descripcion</label>
+            <input type="text" name="descripcion" id="descripcion" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="descripcion" required="">
+            <span ng-show="form.descripcion.$dirty &amp;&amp; form.descripcion.$error.required" class="help-block ng-hide">Descripcion es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="id_marca">Marca</label><br>
+            <select ng-model="id_marca">
+              <option ng-repeat="marca in marcas" value={{marca.id}}>{{marca.descripcion}}</option>
+            </select>
+            <span ng-show="form.id_marca.$dirty &amp;&amp; form.id_marca.$error.required" class="help-block ng-hide">Marca es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="id_tipoventas">Area de Credito</label><br>
+            <select ng-model="id_tipoventas">
+              <option ng-repeat="area in areas" value={{area.id}}>{{area.descripcion}}</option>
+            </select>
+            <span ng-show="form.id_tipoventas.$dirty &amp;&amp; form.id_tipoventas.$error.required" class="help-block ng-hide">Area de Credito es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="admin">Admin</label><br>
+            <select ng-model="admin">
+              <option value=0>No</option>
+              <option value=1>Si</option>
+            </select>
+            <span ng-show="form.admin.$dirty &amp;&amp; form.admin.$error.required" class="help-block ng-hide">Admin es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="activo">Activo</label><br>
+            <select ng-model="activo">
+              <option value=0>No</option>
+              <option value=1>Si</option>
+            </select>
+            <span ng-show="form.activo.$dirty &amp;&amp; form.activo.$error.required" class="help-block ng-hide">Activo es requerido</span>
+          </div>
+          <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger" disabled="disabled">Guardar cambios</button>
+            <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+          </div>
+        </form>
+	    </div>
+    </div>
+  </div>
+</div>

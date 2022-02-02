@@ -1,0 +1,100 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <ol class="breadcrumb">
+          <li id="initbreadcrumb"><a href="#/segurosLeasing">Seguros Leasing</a></li>
+          <li id="accionbreadcrumb"><a href="">Editar</a></li>
+        </ol>
+	    </div>
+      <div id="form_div" class="row margin-auto div-width-600">
+	      <div ng-show="error" class="alert alert-danger ng-binding ng-scope ng-hide">{{error}}</div>
+        <form name="form" ng-submit="editarSeguroLeasing()" role="form" class="ng-scope ng-pristine ng-invalid ng-invalid-required">
+          <div class="form-group">
+            <div class="div-width-40 margin-left-2 float-left margin-top-2">
+               <label for="id_tipovehiculo">Tipo de vehiculo</label><br>
+                <select class="form-control" ng-model="id_tipovehiculo">
+                  <option value=6>Automovil</option>
+                  <option value=7>Carga Liviana</option>
+                  <option value=8>SemiPesado</option>
+                  <option value=9>Pesado</option>
+                  <option value=10>Entre Ciudades</option>
+                  <option value=11>Placa - Bus</option>
+                </select>
+                <span ng-show="form.id_tipovehiculo.$dirty &amp;&amp; form.id_tipovehiculo.$error.required" class="help-block ng-hide">Es requerido</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="div-width-40 float-left margin-top-2">
+              <label for="id_usoseguro">Uso del seguro</label><br>
+              <select class="form-control" ng-model="id_usoseguro">
+                <option value=0>Personal</option>
+                <option value=1>Comercial</option>
+                <option value=2>Placa - Bus</option>
+                <option value=3>Entre ciudades</option>
+              </select>
+              <span ng-show="form.id_usoseguro.$dirty &amp;&amp; form.id_usoseguro.$error.required" class="help-block ng-hide">Es requerido</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="div-width-40 float-left margin-top-2 margin-left-2">
+              <label for="tipoA">Tipo A</label>
+              <input type="text" name="tipoA" id="tipoA" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="tipoA" required="">
+              <span ng-show="form.tipoA.$dirty &amp;&amp; form.tipoA.$error.required" class="help-block ng-hide">Tipo A es requerido</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="div-width-40 float-left margin-top-2">
+              <label for="tipoB">Tipo B</label>
+              <input type="text" name="tipoB" id="tipoB" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="tipoB" required="">
+              <span ng-show="form.tipoB.$dirty &amp;&amp; form.tipoB.$error.required" class="help-block ng-hide">Tipo B es requerido</span>
+            </div>
+
+            <div class="div-width-40 float-left margin-top-2 margin-left-2">
+              <label for="tipoC">Tipo C</label>
+              <input type="text" name="tipoC" id="tipoC" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="tipoC" required="">
+              <span ng-show="form.tipoC.$dirty &amp;&amp; form.tipoC.$error.required" class="help-block ng-hide">Tipo C es requerido</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="div-width-40 float-left margin-top-2">
+              <label for="tipoD">Tipo D</label>
+              <input type="text" name="tipoD" id="tipoD" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="tipoD" required="">
+              <span ng-show="form.tipoD.$dirty &amp;&amp; form.tipoD.$error.required" class="help-block ng-hide">Tipo D es requerido</span>
+            </div>
+
+            <div class="div-width-40 float-left margin-top-2 margin-left-2">
+              <label for="tipoF">Tipo F</label>
+              <input type="text" name="tipoF" id="tipoF" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="tipoF" required="">
+              <span ng-show="form.tipoF.$dirty &amp;&amp; form.tipoF.$error.required" class="help-block ng-hide">Tipo F es requerido</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="div-width-40 float-left margin-top-2">
+              <label for="tipoG">Tipo G</label>
+              <input type="text" name="tipoG" id="tipoG" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="tipoG" required="">
+              <span ng-show="form.tipoG.$dirty &amp;&amp; form.tipoG.$error.required" class="help-block ng-hide">Tipo G es requerido</span>
+            </div>
+
+            <div class="div-width-40 float-left margin-top-2 margin-left-2">
+              <label for="tipoH">Tipo H</label>
+              <input type="text" name="tipoH" id="tipoH" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="tipoH" required="">
+              <span ng-show="form.tipoH.$dirty &amp;&amp; form.tipoH.$error.required" class="help-block ng-hide">Tipo H es requerido</span>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="button-position btn btn-danger" disabled="disabled">Editar Seguro</button>
+            <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+          </div>
+        </form>
+	    </div>
+    </div>
+  </div>
+</div>

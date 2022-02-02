@@ -1,0 +1,46 @@
+<!DOCTYPE <html>
+<html ng-app="Cotizador">
+  <head>
+    <meta charset="utf-8">
+    <title>Cotizador</title>
+    <link rel="shortcut icon" href="imagenes/favicon.ico">
+    <!--Librerias-->
+    <link rel="stylesheet" href="librerias/bootstrap.min.css">
+    <link rel="stylesheet" href="librerias/angular-tooltips.min.css">
+    <script src="librerias/jquery-3.1.1.min.js"></script>
+    <script src="librerias/bootstrap.min.js"></script>
+    <script src="librerias/angular.min.js"></script>
+    <script src="librerias/angular-route.min.js"></script>
+    <script src="librerias/ui-bootstrap-tpls-2.3.1.min.js"></script>
+    <script src="librerias/angular-local-storage.min.js"></script>
+    <script src="librerias/aes.js"></script>
+    <script src="librerias/mdo-angular-cryptography.js"></script>
+    <script src="librerias/ngMask.min.js"></script>
+    <script src="librerias/pdfmake.js"></script>
+    <script src="librerias/vfs_fonts.js"></script>
+    <script src="librerias/angular-tooltips.min.js"></script>
+    <link rel="stylesheet" href="app/css/index.css">
+    <script src="app.js"></script>
+    <!--Constantes-->
+    <script src="app/constantes/constantes.js"></script>
+    <!--Servicios-->
+    <script src="app/servicios/correo/correo.js"></script>
+    <script src="app/servicios/impresionCliente/impresionCliente.js"></script>
+    <script src="app/servicios/impresionCliente/impresionClienteLeasingFinanciero.js"></script>
+    <script src="app/servicios/impresionCliente/impresionClienteLeasingOperativo.js"></script>
+    <script src="app/servicios/impresionCliente/impresionPreAprobacionService.js"></script>
+    <script src="app/servicios/impresionCliente/impresionNoPreAprobacionService.js"></script>
+    <script src="app/servicios/impresionAnalista/impresionAnalista.js"></script>
+    <script src="app/servicios/impresionAnalista/impresionAnalistaLeasingFinanciero.js"></script>
+    <script src="app/servicios/impresionAnalista/impresionAnalistaLeasingOperativo.js"></script>
+    <script src="app/servicios/calcularFormulas/calcularFormulas.js"></script>
+    <!--all-->
+    <script src="all.js"></script>
+    <link rel="stylesheet" href="app/directivas/menuRoles/menuRoles.css">
+    <link rel="stylesheet" href="app/directivas/encabezado/encabezado.css">
+    <link rel="stylesheet" href="app/seccion/editarSeccion/editarSeccion.css">
+  </head>
+  <body>
+    <div ng-view></div>
+  </body>
+</html>

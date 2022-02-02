@@ -1,0 +1,45 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <ol class="breadcrumb">
+          <li id="initbreadcrumb"><a href="#/agregar-modelos/{{routeParams.descripcionMarca}}">{{routeParams.descripcionMarca}}</a></li>
+          <li id="accionbreadcrumb"><a href="">Agregar</a></li>
+        </ol>
+	    </div>
+      <div id="form_div" class="row margin-auto div-width">
+	      <div ng-show="error" class="alert alert-danger ng-binding ng-scope ng-hide">{{error}}</div>
+        <form name="form" ng-submit="agregarModelo()" role="form" class="ng-scope ng-pristine ng-invalid ng-invalid-required">
+          <div class="form-group">
+            <label for="modelo">Modelo</label>
+            <input type="text" name="modelo" id="modelo" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="modelo" required="">
+            <span ng-show="form.modelo.$dirty &amp;&amp; form.modelo.$error.required" class="help-block ng-hide">Modelo es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="tipovehiculo">Tipo Vehiculo</label><br>
+            <select ng-model="tipovehiculo">
+              <option ng-repeat="tipovehiculo in tiposVehiculo" value={{tipovehiculo.id}}>{{tipovehiculo.descripcion}}</option>
+            </select>
+            <span ng-show="form.tipovehiculo.$dirty &amp;&amp; form.tipovehiculo.$error.required" class="help-block ng-hide">Tipo de vehiculo es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="tipofinanciamiento">Tipo de financiamiento</label><br>
+            <select ng-model="tipofinanciamiento">
+              <option value=0>Normal</option>
+              <option value=1>Plazo financiamiento</option>
+            </select>
+            <span ng-show="form.tipofinanciamiento.$dirty &amp;&amp; form.tipofinanciamiento.$error.required" class="help-block ng-hide">Tipo de financiamiento es requerido</span>
+          </div>
+          <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger" disabled="disabled">Agregar Modelo</button>
+            <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+          </div>
+        </form>
+	    </div>
+    </div>
+  </div>
+</div>

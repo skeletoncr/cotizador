@@ -1,0 +1,58 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="form-inline">
+          <label style="margin:-5px 30px" class="span4">Areas de Credito</label>		
+        </div>
+      </div>
+      <hr>
+      <label>Buscar:</label> <input type="text" ng-model="search.descripcion" placeholder="Descripcion" />
+      <a href="#/agregar-area-credito" class="btn btn-inverse dropdown-toggle">Agregar Nueva</a>
+      <br />
+      <p><strong><a href="" ng-click="resetFilters()">Mostrar Todos</a></strong></p>
+      <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+      <table class="table table-striped">
+        <thead>
+          <tr>                         
+            <th>Opciones</th>
+            <th>Descripcion</th>
+            <th>Agregar Detalles</th>
+            <th>Fecha Modificado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="areaCredito in areasCredito | filter:search | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <td>
+              <p>
+                <small>
+                  <a href="#/editar-area-credito/{{areaCredito.id}}">Editar</a>
+                  <a href="" ng-click="borrarAreaCredito(areaCredito.id)">Eliminar</a>
+                </small>
+              </p>
+            </td>
+            <td><p><small>{{areaCredito.descripcion}}</small></p></td>
+            <td>
+              <p>
+                <small>
+                  <a href="#/area-credito-agregar-detalle/{{areaCredito.id}}">Agregar</a>
+                </small>
+              </p>
+            </td>
+            <td><p><small>{{areaCredito.modifydate}}</small></p></td>
+          </tr>
+        </tbody>
+      </table>
+      Paginas de la tabla:
+      <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+      </button>
+        {{currentPage+1}}/{{noOfPages}}
+      <button ng-disabled="currentPage >= areasCredito.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

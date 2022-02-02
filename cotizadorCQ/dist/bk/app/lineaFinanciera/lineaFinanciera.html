@@ -1,0 +1,52 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="form-inline">
+          <label style="margin:-5px 30px" class="span4">Linea Financiera</label>		
+        </div>
+      </div>
+      <hr>
+      <label>Buscar:</label> <input type="text" ng-model="search.descripcion" placeholder="Descripcion" />
+      <a href="#/agregar-lineafinanciera" class="btn btn-inverse dropdown-toggle">Agregar Nueva</a>
+      <br />
+      <p><strong><a href="" ng-click="resetFilters()">Mostrar Todos</a></strong></p>
+      <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+      <table class="table table-striped">
+        <thead>
+          <tr>                         
+            <th>Opciones</th>
+            <th>Codigo</th>
+            <th>Descripcion</th>
+            <th>Fecha Modificado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="unaLineaFinanciera in lineaFinanciera | filter:search | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <td>
+              <p>
+                <small>
+                  <a href="#/editar-lineafinanciera/{{unaLineaFinanciera.id}}">Editar</a>
+                  <a href="" ng-click="borrarLineaFinanciera(unaLineaFinanciera.id)">Eliminar</a>
+                </small>
+              </p>
+            </td>
+            <td><p><small>{{unaLineaFinanciera.codigo}}</small></p></td>
+            <td><p><small>{{unaLineaFinanciera.descripcion}}</small></p></td>
+            <td><p><small>{{unaLineaFinanciera.modifydate}}</small></p></td>
+          </tr>
+        </tbody>
+      </table>
+      Paginas de la tabla:
+      <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+      </button>
+        {{currentPage+1}}/{{noOfPages}}
+      <button ng-disabled="currentPage >= lineaFinanciera.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <ol class="breadcrumb">
+          <li id="initbreadcrumb"><a href="#/promociones">Promociones</a></li>
+          <li id="accionbreadcrumb"><a href="">Agregar</a></li>
+        </ol>
+	    </div>
+      <div id="form_div" class="row margin-auto div-width">
+	      <div ng-show="error" class="alert alert-danger ng-binding ng-scope ng-hide">{{error}}</div>
+        <form name="form" ng-submit="agregarPromocion()" role="form" class="ng-scope ng-pristine ng-invalid ng-invalid-required">
+          <div class="form-group">
+            <label for="descripcion">Descripcion</label>
+            <input type="text" name="descripcion" id="descripcion" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="descripcion" required="">
+            <span ng-show="form.descripcion.$dirty &amp;&amp; form.descripcion.$error.required" class="help-block ng-hide">Descripcion es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="fecha_activacion">Fecha de Activacion</label>
+            <input type="text" mask="9999-19-39" placeholder="YYYY-MM-DD" name="fecha_activacion" id="fecha_activacion" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="fecha_activacion" required="">
+            <span ng-show="form.fecha_activacion.$dirty &amp;&amp; form.fecha_activacion.$error.required" class="help-block ng-hide">Fecha de activacion es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="fecha_vencimiento">Fecha de Vencimiento</label>
+            <input type="text" mask="9999-19-39" placeholder="YYYY-MM-DD" name="fecha_vencimiento" id="fecha_vencimiento" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="fecha_vencimiento" required="">
+            <span ng-show="form.fecha_vencimiento.$dirty &amp;&amp; form.fecha_vencimiento.$error.required" class="help-block ng-hide">Fecha de vencimiento es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="id_tipo_prestamo">Tipo de prestamo</label><br>
+            <select ng-model="id_tipo_prestamo">
+              <option value=0>Prendario</option>
+              <option value=1>Leasing</option>
+            </select>
+            <span ng-show="form.id_tipo_prestamo.$dirty &amp;&amp; form.id_tipo_prestamo.$error.required" class="help-block ng-hide">Tipo es requerido</span>
+          </div>
+          <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger" disabled="disabled">Agregar Promocion</button>
+            <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+          </div>
+        </form>
+	    </div>
+    </div>
+  </div>
+</div>

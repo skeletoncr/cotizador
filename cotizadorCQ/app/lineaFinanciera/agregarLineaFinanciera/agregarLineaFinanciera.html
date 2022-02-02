@@ -1,0 +1,34 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <ol class="breadcrumb">
+          <li id="initbreadcrumb"><a href="#/lineafinanciera">Linea Financiera</a></li>
+          <li id="accionbreadcrumb"><a href="">Agregar</a></li>
+        </ol>
+	    </div>
+      <div id="form_div" class="row margin-auto div-width">
+	      <div ng-show="error" class="alert alert-danger ng-binding ng-scope ng-hide">{{error}}</div>
+        <form name="form" ng-submit="agregarLineaFinanciera()" role="form" class="ng-scope ng-pristine ng-invalid ng-invalid-required">
+          <div class="form-group">
+            <label for="seguro">Codigo</label>
+            <input type="text" name="codigo" id="codigo" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="codigo" required="">
+            <span ng-show="form.codigo.$dirty &amp;&amp; form.codigo.$error.required" class="help-block ng-hide">Codigo es requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label for="adicional">Descripcion</label>
+            <input type="text" name="descripcion" id="descripcion" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="descripcion" required="">
+            <span ng-show="form.descripcion.$dirty &amp;&amp; form.descripcion.$error.required" class="help-block ng-hide">Descripcion es requerido</span>
+          </div>
+          <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger" disabled="disabled">Agregar Linea Financiera</button>
+            <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+          </div>
+        </form>
+	    </div>
+    </div>
+  </div>
+</div>

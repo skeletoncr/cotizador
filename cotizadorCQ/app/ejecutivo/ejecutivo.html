@@ -1,0 +1,330 @@
+<encabezado></encabezado>
+<div>
+  <div class="row">
+    <menu-roles></menu-roles>
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="form-inline">
+          <label style="margin:-5px 30px" class="span4">Pantalla Ejecutivo</label>
+        </div>
+      </div>
+      <hr>
+      <div id="form_div" class="margin-auto">
+	      <div ng-show="error" class="alert alert-danger ng-binding ng-scope ng-hide">{{error}}</div>
+        <form name="form" ng-submit="agregarCotizacion()" role="form" class="form-horizontal ng-scope ng-pristine ng-invalid ng-invalid-required">
+          <!--Tipo de prestamo-->
+          <div class="row margin-left-2">
+            <div class="form-group">
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="tipoPrestamo">Tipo de prestamo</label>
+                <select class="form-control" ng-model="tipoPrestamo" ng-change="onTipoPrestamoChange()">
+                  <option value=0>Prendario</option>
+                  <option value=1>Leasing</option>
+                </select>
+                <span ng-show="form.tipoPrestamo.$dirty &amp;&amp; form.tipoPrestamo.$error.required" class="help-block ng-hide">Tipo de prestamo es requerido</span>
+              </div>
+            </div>
+          </div>
+          <!--Datos del vehiculo-->
+          <div class="row margin-left-2">
+            <div class="form-group">
+              <div class="div-width-213 float-left margin-left-2">
+                <img ng-if="agenciasLoading" ng-src="{{imgLoading}}"/>
+                <label for="selectedAgencia">Agencia</label><br>
+                <select class="form-control" ng-model="selectedAgencia" ng-options="item.nombre for item in agencias track by item.id"></select>
+                <span ng-show="form.selectedAgencia.$dirty &amp;&amp; form.selectedAgencia.$error.required" class="help-block ng-hide">Agencia es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="tipoVehiculoComprar">Tipo de vehiculo</label>
+                <select ng-disabled="disableTipoVehiculoComprar" class="form-control" ng-model="tipoVehiculoComprar">
+                  <option value=1>Nuevo</option>
+                  <option value=2>Usado</option>
+                </select>
+                <span ng-show="form.tipoVehiculoComprar.$dirty &amp;&amp; form.tipoVehiculoComprar.$error.required" class="help-block ng-hide">Tipo es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <img ng-if="marcasLoading" ng-src="{{imgLoading}}"/>
+                <label for="selectedMarca">Marca</label><br>
+                <select class="form-control" ng-model="selectedMarca" ng-options="item.descripcion for item in marcas track by item.descripcion" ng-change="onMarcasChange()"></select>
+                <span ng-show="form.selectedMarca.$dirty &amp;&amp; form.selectedMarca.$error.required" class="help-block ng-hide">Marca es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <img ng-if="modelosLoading" ng-src="{{imgLoading}}"/>
+                <label for="selectedModelo">Modelo</label><br>
+                <select class="form-control" ng-model="selectedModelo" ng-options="item.modelo for item in modelos track by item.id" ng-change="onModeloChange()"></select>
+                <span ng-show="form.selectedModelo.$dirty &amp;&amp; form.selectedModelo.$error.required" class="help-block ng-hide">Modelo es requerido</span>
+              </div>
+
+              <div ng-show="esUsado" class="div-width-213 float-left margin-left-2">
+                <label for="placaVehiculo">Placa</label>
+                <input type="text" name="placaVehiculo" id="placaVehiculo" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="placaVehiculo">
+                <!--<span ng-show="form.placaVehiculo.$dirty &amp;&amp; form.placaVehiculo.$error.required" class="help-block ng-hide">Placa es requerido</span>-->
+              </div>
+
+              <div class="div-width-400 float-left margin-left-2">
+                <img ng-if="promocionesLoading" ng-src="{{imgLoading}}"/>
+                <label for="selectedPromocion">Promociones</label><br>
+                <select class="form-control" ng-model="selectedPromocion" ng-options="item.descripcion for item in promociones track by item.id" ng-change="onPromocionChange()"></select>
+                <span ng-show="form.selectedPromocion.$dirty &amp;&amp; form.selectedPromocion.$error.required" class="help-block ng-hide">Promocion es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <img ng-if="monedasLoading" ng-src="{{imgLoading}}"/>
+                <label for="selectedMoneda">Moneda</label><br>
+                <select class="form-control" ng-model="selectedMoneda" ng-options="item.moneda for item in monedas track by item.id_moneda"></select>
+                <span ng-show="form.selectedMoneda.$dirty &amp;&amp; form.selectedMoneda.$error.required" class="help-block ng-hide">Moneda es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <img ng-if="anniosLoading" ng-src="{{imgLoading}}"/>
+                <label for="selectedAnnio">Año</label><br>
+                <select class="form-control" ng-model="selectedAnnio" ng-options="item.anno for item in annios track by item.anno"></select>
+                <span ng-show="form.selectedAnnio.$dirty &amp;&amp; form.selectedAnnio.$error.required" class="help-block ng-hide">Año es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="costoConGastos">Costo del vehiculo con gastos</label>
+                <input type="number" step="any" name="costoConGastos" id="costoConGastos" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="costoConGastos" required="">
+                <!--<span ng-show="form.costoConGastos.$dirty &amp;&amp; form.costoConGastos.$error.required" class="help-block ng-hide">Costo con gastos es requerido</span>-->
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="gastosVehiculo">Gastos del vehiculo</label>
+                <input type="number" step="any" name="gastosVehiculo" id="gastosVehiculo" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="gastosVehiculo" required="">
+                <!--<span ng-show="form.gastosVehiculo.$dirty &amp;&amp; form.gastosVehiculo.$error.required" class="help-block ng-hide">Gastos del Vehiculo es requerido</span>-->
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="selectedExtra">Seleccione LoJack</label><br>
+                <select class="form-control" ng-model="selectedExtra" ng-options="item.descripcion for item in extras track by item.id"></select>
+                <!--<span ng-show="form.gastosVehiculo.$dirty &amp;&amp; form.gastosVehiculo.$error.required" class="help-block ng-hide">Gastos del Vehiculo es requerido</span>-->
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <img ng-if="plazoLoading" ng-src="{{imgLoading}}"/>
+                <label for="selectedPlazo">Plazo</label><br>
+                <select class="form-control" ng-model="selectedPlazo" ng-options="item for item in plazosPromocion"></select>
+                <span ng-show="form.selectedPlazo.$dirty &amp;&amp; form.selectedPlazo.$error.required" class="help-block ng-hide">Plazo es requerido</span>
+              </div>
+
+              <div ng-show="prendarioTrue" class="div-width-20 float-left margin-left-2">
+                <img ng-if="bonificacionesLoading" ng-src="{{imgLoading}}"/>
+                <label for="selectedBonificacion">Bonificacion</label><br>
+                <select class="form-control" ng-model="selectedBonificacion" ng-options="item.seguro for item in bonificaciones track by item.id"></select>
+                <!--<span ng-show="form.selectedBonificacion.$dirty &amp;&amp; form.selectedBonificacion.$error.required" class="help-block ng-hide">Bonificacion es requerido</span>-->
+              </div>
+
+              <div class="div-width-20 float-left margin-left-2">
+                <label for="deudorTipo">Deudor tipo</label><br>
+                <select class="form-control" ng-model="deudorTipo">
+                  <option value=0>Fisico</option>
+                  <option value=1>Juridico</option>
+                  <option value=2>Extranjero</option>
+                </select>
+                <span ng-show="form.deudorTipo.$dirty &amp;&amp; form.deudorTipo.$error.required" class="help-block ng-hide">Es requerido</span>
+              </div>
+
+              <div class="div-width-20 float-left margin-left-2">
+                <label for="usoSeguro">Uso del seguro</label><br>
+                  <select class="form-control" ng-model="usoSeguro">
+                    <option value=0>Personal</option>
+                    <option value=1>Comercial</option>
+                    <option value=2>Placa - Bus</option>
+                  </select>
+                  <span ng-show="form.usoSeguro.$dirty &amp;&amp; form.usoSeguro.$error.required" class="help-block ng-hide">Es requerido</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row margin-left-2">
+            <div class="form-group">
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="prima">% de Prima</label>
+                <input type="number" step="any" name="prima" id="prima" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="prima" required="">
+                <!--<span ng-show="form.prima.$dirty &amp;&amp; form.prima.$error.required" class="help-block ng-hide">% de prima es requerido</span>-->
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="montoPrima">Monto de prima</label>
+                <input type="number" step="any" name="montoPrima" id="montoPrima" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="montoPrima">
+                <!--<span ng-show="form.montoPrima.$dirty &amp;&amp; form.montoPrima.$error.required" class="help-block ng-hide">Libre es requerido</span>-->
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2 text-align-center margin-top-2">
+                <a ng-click="calcularCuota()" class="btn btn-danger">Calcular</a>
+                <img ng-if="calcularLoading" ng-src="{{imgLoading}}"/>
+              </div>
+            </div>
+          </div>
+
+          <!--Cuotas-->
+          <div class="row margin-left-2">
+            <div class="form-group">
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="cuota1">Cuota 1</label>
+                <input type="text" disabled name="cuota1" id="cuota1" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="cuota1" required="">
+                <span ng-show="form.cuota1.$dirty &amp;&amp; form.cuota1.$error.required" class="help-block ng-hide">Cuota 1 es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="cuota2">Cuota 2</label>
+                <input type="text" disabled name="cuota2" id="cuota2" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="cuota2">
+                <span ng-show="form.cuota2.$dirty &amp;&amp; form.cuota2.$error.required" class="help-block ng-hide">Cuota 2 es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="cuota3">Cuota 3</label>
+                <input type="text" disabled name="cuota3" id="cuota3" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="cuota3">
+                <span ng-show="form.cuota3.$dirty &amp;&amp; form.cuota3.$error.required" class="help-block ng-hide">Cuota 3 es requerido</span>
+              </div>
+            </div>
+          </div>
+
+           <!--Opciones de isuzu-->
+          <div ng-show="opcionIsuzu">
+            <hr>
+            <div class="row margin-left-2">
+              <h4>Consulta rapida</h4>
+            </div>
+            <div class="row margin-left-2">
+              <div class="form-group">
+                <div class="div-width-213 float-left margin-left-2">
+                  <label>Cedula</label>
+                  <a href="" tooltips tooltip-template="Digitar sin guiones" class="a-sin-subrayado glyphicon glyphicon-question-sign"></a>
+                  <input type="text" class="form-control" ng-model="cedula">
+                </div>
+                
+                <div class="div-width-213 float-left text-align-center margin-top-2">
+                  <a ng-click="consultarIsuzu()" class="btn btn-primary">Consultar</a>
+                  <img ng-if="cedulaIsuzuLoading" ng-src="{{imgLoading}}"/>
+                </div>   
+                <h2>{{mensajeIsuzu}}</h2>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+          <div class="row margin-left-2">
+            <h4>Opciones rapidas</h4>
+          </div>
+
+          <!--Opciones rapidas-->
+          <div class="row margin-left-2">
+            <div class="form-group">
+              <button class="btn btn-danger" ng-click="openRapidaPdf()" type="button">
+                Imprimir
+              </button>
+              <img ng-if="detallePDFRapidaLoading" ng-src="{{imgLoading}}"/>
+              <button class="btn btn-primary" ng-click="enviarCorreoRapido()" type="button">
+                Enviar Correo
+              </button>
+              <img ng-if="correoRapidoLoading" ng-src="{{imgLoading}}"/>
+              <input type="email" placeholder="Correo" name="correoRapido" id="correoRapido" class="" ng-model="correoRapido">
+              <button class="btn btn-primary" ng-click="limpiarDatos()" type="button">
+                Limpiar Datos
+              </button>
+              <button class="btn btn-danger" ng-click="openAnalistaPdf()" type="button">
+                Analista
+              </button>
+              <img ng-if="detallePDFAnalistaLoading" ng-src="{{imgLoading}}"/>
+            </div>
+          </div>
+
+          <hr>
+          <div class="row margin-left-2">
+            <h4>Informacion del cliente</h4>
+          </div>
+
+          <!--Informacion del cliente-->
+          <div class="row margin-left-2">
+            <div class="form-group">
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="salarioBruto">Ingreso Total</label>
+                <input type="number" step="any" name="salarioBruto" id="salarioBruto" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="salarioBruto" required="">
+                <span ng-show="form.salarioBruto.$dirty &amp;&amp; form.salarioBruto.$error.required" class="help-block ng-hide">Salario Bruto es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="salarioNeto">Ingreso Total menos gastos</label>
+                <input type="number" step="any" name="salarioNeto" id="salarioNeto" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="salarioNeto" required="">
+                <span ng-show="form.salarioNeto.$dirty &amp;&amp; form.salarioNeto.$error.required" class="help-block ng-hide">Salario Neto es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="fechaIngreso">Fecha Ingreso al trabajo</label>
+                <input type="text" mask="39/19/9999" placeholder="DD/MM/YYYY" name="fechaIngreso" id="fechaIngreso" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="fechaIngreso" required="">
+                <span ng-show="form.fechaIngreso.$dirty &amp;&amp; form.fechaIngreso.$error.required" class="help-block ng-hide">Fecha Ingreso es requerido</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row margin-left-2">
+            <div class="form-group">
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="cedula">Cedula</label>
+                <input type="text" name="cedula" id="cedula" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="cedula" required="">
+                <span ng-show="form.cedula.$dirty &amp;&amp; form.cedula.$error.required" class="help-block ng-hide">Cedula es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2 text-align-center margin-top-2">
+                <a ng-click="consultarCedula()" tabindex="0" class="btn btn-primary">Consultar cedula</a>
+                <img ng-if="consultarCedulaLoading" ng-src="{{imgLoading}}"/>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="nombre" required="">
+                <span ng-show="form.nombre.$dirty &amp;&amp; form.nombre.$error.required" class="help-block ng-hide">Nombre es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="apellido1">Apellido1</label>
+                <input type="text" name="apellido1" id="apellido1" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="apellido1" required="">
+                <span ng-show="form.apellido1.$dirty &amp;&amp; form.apellido1.$error.required" class="help-block ng-hide">Apellido1 es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="apellido2">Apellido2</label>
+                <input type="text" name="apellido2" id="apellido2" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="apellido2">
+                <span ng-show="form.apellido2.$dirty &amp;&amp; form.apellido2.$error.required" class="help-block ng-hide">Apellido2 es requerido</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row margin-left-2">
+            <div class="form-group">
+              <div class="div-width-213 margin-left-2 float-left">
+                <label for="fechaNacimiento">Fecha Nacimiento</label>
+                <input type="text" mask="39/19/9999" placeholder="DD/MM/YYYY" name="fechaNacimiento" id="fechaNacimiento" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="fechaNacimiento" required="">
+                <span ng-show="form.fechaNacimiento.$dirty &amp;&amp; form.fechaNacimiento.$error.required" class="help-block ng-hide">Fecha Nacimiento es requerido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="correo">Correo</label>
+                <input type="email" name="correo" id="correo" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="correo" required="">
+                <span ng-show="form.correo.$dirty &amp;&amp; form.correo.$error.required" class="help-block ng-hide">Correo es requerido</span>
+                <span ng-show="form.correo.$dirty &amp;&amp; form.correo.$error.email" class="help-block ng-hide">Correo invalido</span>
+              </div>
+
+              <div class="div-width-213 float-left margin-left-2">
+                <label for="telefono">Teléfono</label>
+                <input type="text" name="telefono" id="telefono" class="form-control ng-pristine ng-invalid ng-invalid-required" ng-model="telefono" required="">
+                <span ng-show="form.telefono.$dirty &amp;&amp; form.telefono.$error.required" class="help-block ng-hide">Teléfono es requerido</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row margin-left-2">
+            <div class="form-actions">
+              <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger" disabled="disabled">Pre Aprobar</button>
+              <img ng-if="dataLoading" ng-src="{{imgLoading}}"/>
+            </div>
+          </div>
+        </form>
+	    </div>
+    </div>
+  </div>
+</div>
